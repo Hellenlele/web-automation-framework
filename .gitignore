@@ -1,0 +1,5 @@
+.env
+reports/
+screenshots/
+tests/examples/test_form.py
+tests/examples/test_advanced.py
