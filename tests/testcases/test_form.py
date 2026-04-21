@@ -4,6 +4,7 @@ Target: https://the-internet.herokuapp.com (free public test site)
 """
 import pytest
 import os
+from pathlib import Path
 from selenium.webdriver.common.by import By
 from src.components.form import FormComponent
 from src.components.dropdown import DropdownComponent
@@ -61,10 +62,8 @@ UPLOAD_BTN = (By.ID, "file-submit")
 UPLOAD_RESULT = (By.ID, "uploaded-files")
 
 class TestFileUpload:
-    def test_upload_file(self, driver, tmp_path):
-        # Create a temporary file to upload
-        test_file = tmp_path / "test_upload.txt"
-        test_file.write_text("hello automation")
+    def test_upload_file(self, driver):
+        test_file = Path(__file__).parent.parent / "test_data" / "test_upload.txt"
 
         page = FormComponent(driver)
         HomePage(driver).go_to("File Upload")
