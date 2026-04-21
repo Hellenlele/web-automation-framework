@@ -1,8 +1,8 @@
 .env
 reports/
 screenshots/
-tests/examples/test_form.py
-tests/examples/test_advanced.py
+tests/testcases/test_form.py
+tests/testcases/test_advanced.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -5,7 +5,7 @@ load_dotenv()
 
 
 class Config:
-    BASE_URL: str = os.getenv("BASE_URL", "https://example.com")
+    BASE_URL: str = os.getenv("BASE_URL", "https://the-internet.herokuapp.com")
     BROWSER: str = os.getenv("BROWSER", "chrome")
     HEADLESS: bool = os.getenv("HEADLESS", "false").lower() == "true"
     IMPLICIT_WAIT: int = int(os.getenv("IMPLICIT_WAIT", "10"))
@@ -14,4 +14,3 @@ class Config:
     SCREENSHOT_DIR: str = os.path.join(os.path.dirname(__file__), "..", "..", "screenshots")
     LOGIN_USERNAME: str = os.getenv("LOGIN_USERNAME", "tomsmith")
     LOGIN_PASSWORD: str = os.getenv("LOGIN_PASSWORD", "SuperSecretPassword!")
-    LOGIN_URL: str = os.getenv("LOGIN_URL", "https://the-internet.herokuapp.com/login")

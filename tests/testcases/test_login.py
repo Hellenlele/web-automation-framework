@@ -5,6 +5,7 @@ Target: https://the-internet.herokuapp.com/login (free public test site)
 import pytest
 from selenium.webdriver.common.by import By
 from src.pages.base_page import BasePage
+from src.pages.home_page import HomePage
 from src.config.config import Config
 
 
@@ -21,7 +22,7 @@ LOGOUT_BTN = (By.CSS_SELECTOR, "a[href='/logout']")
 
 class LoginPage(BasePage):
     def open_login(self):
-        self.open(Config.LOGIN_URL)
+        HomePage(self.driver).go_to("Form Authentication")
 
     def login(self, username: str, password: str):
         self.type(USERNAME, username)
@@ -33,6 +34,7 @@ class LoginPage(BasePage):
 
     def logout(self):
         self.click(LOGOUT_BTN)
+        self.wait.until_url_contains("login")
 
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
@@ -56,8 +58,8 @@ class TestLogin:
         page.login(Config.LOGIN_USERNAME, Config.LOGIN_PASSWORD)
         assert "You logged into a secure area!" in page.get_flash_message()
 
-    def test_logout_after_login(self, class_driver):
-        page = LoginPage(class_driver)
+    def test_logout_after_login(self, fresh_driver):
+        page = LoginPage(fresh_driver)
         page.open_login()
         page.login(Config.LOGIN_USERNAME, Config.LOGIN_PASSWORD)
         page.logout()
